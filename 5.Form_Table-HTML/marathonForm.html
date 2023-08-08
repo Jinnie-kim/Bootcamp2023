@@ -10,21 +10,21 @@
     <form action="/work">
       <div>
         <label for="first">First Name: </label>
-        <input type="text" id="first" required />
+        <input type="text" id="first" name="firstname" required />
         <label for="last">Last Name: </label>
-        <input type="text" id="last" required />
+        <input type="text" id="last" name="lastname" required />
       </div>
       <p>Select a Race:</p>
       <div>
-        <input type="radio" id="5k" name="marathon" />
-        <label for="5k">Fun Run 5k</label>
+        <input type="radio" id="funrun" name="marathon" value="funrun" />
+        <label for="funrun">Fun Run 5k</label>
       </div>
       <div>
-        <input type="radio" id="half" name="marathon" />
+        <input type="radio" id="half" name="marathon" value="half" />
         <label for="half">Half Marathon</label>
       </div>
       <div>
-        <input type="radio" id="full" name="marathon" />
+        <input type="radio" id="full" name="marathon" value="full" />
         <label for="full">Full Marathon</label>
       </div>
       <label for="email">Email: </label>
