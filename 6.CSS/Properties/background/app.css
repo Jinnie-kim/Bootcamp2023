@@ -1,0 +1,14 @@
+section {
+  width: 80%;
+  height: 800px;
+  /* background-image: url(https://assets.mycast.io/actor_images/actor-edvin-ryding-717791_large.jpg?1679792624);
+  background-size: cover;
+  background-position: top; */
+  background: url(https://assets.mycast.io/actor_images/actor-edvin-ryding-717791_large.jpg?1679792624) center/40% no-repeat, blueviolet;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 100px;
+  color: white;
+}
