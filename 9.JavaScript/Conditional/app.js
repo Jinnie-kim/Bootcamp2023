@@ -1,23 +1,27 @@
-// let random = Math.random();
+/* let random = Math.random();
 
-// if (random < 0.5) {
-//   console.log('YOUR NUMBER IS LESS THAN 0.5!!!');
-//   console.log(random);
-// }
+if (random < 0.5) {
+  console.log('YOUR NUMBER IS LESS THAN 0.5!!!');
+} else {
+  console.log('YOUR NUMBER IS GREATER(OR EQUAL) THAN 0.5!!!');
+}
+console.log(random); */
 
 // if (random >= 0.5) {
 //   console.log('YOUR NUMBER IS GREATER THAN 0.5!!!');
 //   console.log(random);
 // }
 
-// const dayOfWeek = 'Friday';
+// const dayOfWeek = prompt('Enter a day').toLowerCase();
 
-// if (dayOfWeek === 'Monday') {
+// if (dayOfWeek === 'monday') {
 //   console.log('UGHHH I HATE MONDAYS');
-// } else if (dayOfWeek === 'Saturday') {
+// } else if (dayOfWeek === 'saturday') {
 //   console.log('YAY I LOVE SATURDAYS!');
-// } else if (dayOfWeek === 'Friday') {
+// } else if (dayOfWeek === 'friday') {
 //   console.log('FRIDAYS ARE DECENT, ESPECIALLY AFTER WORK!');
+// } else {
+//   console.log('MEH');
 // }
 
 // 0 - 5 FREE
@@ -25,7 +29,7 @@
 // 10 - 65 ADULT $20
 // 65+ SENIOR $10
 
-const age = 3;
+const age = 90;
 
 if (age < 5) {
   console.log('You are a baby. You get in for free');
@@ -33,4 +37,6 @@ if (age < 5) {
   console.log('You are a child, You pay $10');
 } else if (age < 65) {
   console.log('You are a adult. You pay $20');
+} else {
+  console.log('You are a senior. You pay $10');
 }
