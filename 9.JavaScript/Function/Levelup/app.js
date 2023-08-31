@@ -19,3 +19,14 @@ function birdWatch() {
 }
 birdWatch();
 // console.log(bird);
+
+// block level scope
+
+let radius = 8;
+if (radius > 0) {
+  const PI = 3.141519;
+  let msg = 'HIIII';
+}
+
+console.log(radius); // 8
+console.log(PI); // undefined
