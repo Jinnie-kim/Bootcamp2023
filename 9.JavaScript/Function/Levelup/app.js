@@ -30,3 +30,15 @@ if (radius > 0) {
 
 console.log(radius); // 8
 console.log(PI); // undefined
+
+// Lexical scope
+
+function bankRobbery() {
+  const heroes = ['Spiderman', 'Wolverine', 'Black Panther', 'BatWoman'];
+  function cryForHelp() {
+    for (let hero of heroes) {
+      console.log(`PLEASE HELP US, ${hero.toUpperCase()}`);
+    }
+  }
+  cryForHelp();
+}
