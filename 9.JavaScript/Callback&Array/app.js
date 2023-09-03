@@ -34,3 +34,18 @@ const movieTitle = movies.map((movie) => movie.title);
 
 console.log(movieTitle);
 console.log(times);
+
+// setTimeout & setInterval
+
+console.log('Hello!!!!');
+setTimeout(() => {
+  console.log('...are you still there?');
+}, 3000);
+
+console.log('GGOODBYE~');
+
+const id = setInterval(() => {
+  console.log(Math.random());
+}, 2000);
+
+// clearInterval(id);
