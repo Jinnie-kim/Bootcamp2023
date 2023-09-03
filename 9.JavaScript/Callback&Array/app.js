@@ -26,3 +26,11 @@ const movies = [
 movies.forEach((movie) => {
   console.log(`${movie.title} - ${movie.score}/100`);
 });
+
+// Map
+const times = numbers.map((number) => number * 2);
+
+const movieTitle = movies.map((movie) => movie.title);
+
+console.log(movieTitle);
+console.log(times);
