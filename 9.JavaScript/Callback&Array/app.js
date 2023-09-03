@@ -49,3 +49,35 @@ const id = setInterval(() => {
 }, 2000);
 
 // clearInterval(id);
+
+// Filter
+
+numbers.filter((n) => n === 4);
+
+// Some & Every
+
+const exams = [80, 98, 92, 78, 77, 90, 89, 84, 81, 77];
+
+const isAllPassed = exams.every((score) => score > 75);
+
+const isSomePassed = exams.some((score) => score > 80);
+
+// Reduce
+
+const prices = [9.99, 1.5, 19.99, 49.99, 30.5];
+
+// let total = 0;
+
+// for (let price of prices) {
+//   total += price;
+// }
+
+const total = prices.reduce((total, price) => {
+  return total + price;
+});
+
+const minPrice = prices.reduce((min, price) => {
+  return min < price ? min : price;
+});
+
+// Arrow function & this
