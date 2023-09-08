@@ -1,20 +1,24 @@
 const colorButton = document.querySelector('#color-button');
 const colorCode = document.querySelector('#color-code');
-const palette = document.querySelector('#color-palette');
-
-let rCode = Math.floor(Math.random() * 256);
-let gCode = Math.floor(Math.random() * 256);
-let bCode = Math.floor(Math.random() * 256);
 
 function createRandomColor() {
   let rCode = Math.floor(Math.random() * 256);
   let gCode = Math.floor(Math.random() * 256);
   let bCode = Math.floor(Math.random() * 256);
 
-  palette.style.backgroundColor = `rgb(${rCode},${gCode},${bCode})`;
-  colorCode.textContent = `rgb(${rCode},${gCode},${bCode})`;
+  if (rCode + gCode + bCode < 300) {
+    colorCode.style.color = 'white';
+  } else {
+    colorCode.style.color = 'black';
+  }
+
+  return `rgb(${rCode},${gCode},${bCode})`;
 }
 
-createRandomColor();
+function changeRandomColor() {
+  const newColor = createRandomColor();
+  document.body.style.backgroundColor = newColor;
+  colorCode.textContent = newColor;
+}
 
-colorButton.addEventListener('click', createRandomColor);
+colorButton.addEventListener('click', changeRandomColor);
