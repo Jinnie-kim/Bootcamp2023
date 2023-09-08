@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score Keeper ⚔️</title>
+  </head>
+  <body>
+    <section id="board">
+      <img src="https://i.pinimg.com/564x/72/9d/4f/729d4f30d8af743617872b8b46d16e53.jpg" alt="" />
+      <h1>Score Keeper</h1>
+      <div class="score-board">
+        <div class="score">
+          <b id="player1-score">0</b>
+          <span>to</span>
+          <b id="player2-score">0</b>
+        </div>
+        <span>Use the buttons below to keep score.</span>
+        <label for="set-select">Playing to</label>
+        <select name="setNumber" id="set-select">
+          <option value="">--Please choose set score--</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+      </div>
+      <div class="button-group">
+        <button id="player1">+1 Player One</button>
+        <button id="player2">+1 Player Two</button>
+        <button id="reset">Reset</button>
+      </div>
+    </section>
+    <script src="app.js"></script>
+  </body>
+</html>
