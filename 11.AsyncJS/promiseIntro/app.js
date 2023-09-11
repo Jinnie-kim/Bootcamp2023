@@ -56,26 +56,44 @@ const fakeRequestPromise = (url) => {
 //   }
 // );
 
+// Promise
+// fakeRequestPromise('yell.com/api/coffe/page1')
+//   // Only this will run if the promise is resovled.
+//   .then(() => {
+//     console.log('It Worked!!!!(page1)');
+//     fakeRequestPromise('yelp.com/api/coffee/page2')
+//       .then(() => {
+//         console.log('It Worked!!!!(page2)');
+//         fakeRequestPromise('yelp.com/coffee/page3')
+//           .then(() => {
+//             console.log('It Worked!!!!(page3)');
+//           })
+//           .catch(() => {
+//             console.log('OH, NO ERROR !!!(page3)');
+//           });
+//       })
+//       .catch(() => {
+//         console.log('OH, NO ERROR !!!(page2)');
+//       });
+//   })
+//   // Only this will run if the promise is rejected.
+//   .catch(() => {
+//     console.log('OH, NO ERROR !!!(page1)');
+//   });
+
 fakeRequestPromise('yell.com/api/coffe/page1')
-  // Only this will run if the promise is resovled.
-  .then(() => {
+  .then((data) => {
     console.log('It Worked!!!!(page1)');
-    fakeRequestPromise('yelp.com/api/coffee/page2')
-      .then(() => {
-        console.log('It Worked!!!!(page2)');
-        fakeRequestPromise('yelp.com/coffee/page3')
-          .then(() => {
-            console.log('It Worked!!!!(page3)');
-          })
-          .catch(() => {
-            console.log('OH, NO ERROR !!!(page3)');
-          });
-      })
-      .catch(() => {
-        console.log('OH, NO ERROR !!!(page2)');
-      });
+    console.log(data);
+    return fakeRequestPromise('yelp.com/api/coffee/page2');
   })
-  // Only this will run if the promise is rejected.
+  .then(() => {
+    console.log('It Wo         rked!!!!(page2)');
+    return fakeRequestPromise('yelp.com/api/coffee/page3');
+  })
+  .then(() => {
+    console.log('It Worked!!!!(page3)');
+  })
   .catch(() => {
-    console.log('OH, NO ERROR !!!(page1)');
+    console.log('OH NO, A REQUEST FAILED!');
   });
