@@ -27,6 +27,7 @@ const movieImage = document.querySelector('#movie-image');
 // Lecture version
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  deletePreviousSearch();
   const searchTerm = form.elements.query.value;
   const config = { params: { q: searchTerm } };
   const res = await axios.get(`https://api.tvmaze.com/search/shows`, config);
@@ -42,5 +43,12 @@ const makeImages = (shows) => {
       img.src = result.show.image.medium;
       document.body.append(img);
     }
+  }
+};
+
+const deletePreviousSearch = () => {
+  const imgs = document.querySelectorAll('img');
+  for (let img of imgs) {
+    img.remove();
   }
 };
