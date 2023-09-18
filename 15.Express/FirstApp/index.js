@@ -13,17 +13,27 @@ const app = express();
 // /dogs => 'woof'
 // '/'
 
+// root route
+app.get('/', (req, res) => {
+  res.send('This is the home page');
+});
+
+app.get('/r/:subreddit', (req, res) => {
+  const { subreddit } = req.params;
+  res.send(`<h1>Browsing the ${subreddit} subreddit</h1>`);
+});
+
+app.get('/r/:subreddit/:postId', (req, res) => {
+  const { subreddit, postId } = req.params;
+  res.send(`<h1>Viewing Post ID: ${postId} on Browsing the ${subreddit} subreddit</h1>`);
+});
+
 app.get('/cats', (req, res) => {
   res.send('MEOW!!');
 });
 
 app.get('/dogs', (req, res) => {
   res.send('WOOF!!');
-});
-
-// root route
-app.get('/', (req, res) => {
-  res.send('This is the home page');
 });
 
 // This code come at the end
