@@ -36,6 +36,14 @@ app.get('/dogs', (req, res) => {
   res.send('WOOF!!');
 });
 
+app.get('/search', (req, res) => {
+  const { q } = req.query;
+  if (!q) {
+    res.send('Nothing found if nothing searched!');
+  }
+  res.send(`<h1>Search results for : ${q}</h1>`);
+});
+
 // This code come at the end
 // If I write this code up top, all of other method will be ignored.
 app.get('*', (req, res) => {
