@@ -17,10 +17,25 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// We don't have access to request body immediately(if we try, we get undefined, it's not going to be parsed)
+// tell express to use that middleware.
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/products', async (req, res) => {
   // await some mongoose operation
   const products = await Product.find({});
   res.render('products/index', { products });
+});
+
+app.get('/products/new', (req, res) => {
+  res.render('products/new');
+});
+
+app.post('/products', async (req, res) => {
+  const newProduct = new Product(req.body);
+  await newProduct.save();
+  console.log(newProduct);
+  res.redirect(`/products/${newProduct._id}`);
 });
 
 app.get('/products/:id', async (req, res) => {
