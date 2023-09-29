@@ -27,9 +27,15 @@ app.use(methodOverride('_method'));
 const categories = ['fruit', 'vegetable', 'dairy', 'fungai'];
 
 app.get('/products', async (req, res) => {
-  // await some mongoose operation
-  const products = await Product.find({});
-  res.render('products/index', { products });
+  const { category } = req.query;
+  if (category) {
+    const products = await Product.find({ category });
+    res.render('products/index', { products, category });
+  } else {
+    // await some mongoose operation
+    const products = await Product.find({});
+    res.render('products/index', { products, category: 'All' });
+  }
 });
 
 app.get('/products/new', (req, res) => {
