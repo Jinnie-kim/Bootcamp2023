@@ -15,13 +15,13 @@ app.use('/dogs', (req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
+const verifyPassword = (req, res, next) => {
   const { password } = req.query;
   if (password === 'chickennugget') {
     next();
   }
   res.send('sorry you need a password');
-});
+};
 
 // app.use((req, res, next) => {
 //   console.log('This is my first middleware!!');
@@ -48,8 +48,8 @@ app.get('/dogs', (req, res) => {
   res.send('Woof Woof!');
 });
 
-app.get('/secret', (req, res) => {
-  res.send('MY SECRET IS: Sometimes I wear headphones in public so U dont to talk to anyone');
+app.get('/secret', verifyPassword, (req, res) => {
+  res.send('MY SECRET IS: Sometimes I wear headphones in public so I dont have to talk to anyone');
 });
 
 // This will only run, because it's at the end of the app
