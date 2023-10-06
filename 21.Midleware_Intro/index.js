@@ -10,6 +10,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/dogs', (req, res, next) => {
+  console.log('I love dogs');
+  next();
+});
 // app.use((req, res, next) => {
 //   console.log('This is my first middleware!!');
 //   return next();
@@ -33,6 +37,12 @@ app.get('/', (req, res) => {
 app.get('/dogs', (req, res) => {
   console.log(`request date: ${req.requestTime}`);
   res.send('Woof Woof!');
+});
+
+// This will only run, because it's at the end of the app
+// It will only run if we never sent back anything before.
+app.use((req, res) => {
+  res.status.send('NOT FOUND!');
 });
 
 app.listen(3000, () => {
