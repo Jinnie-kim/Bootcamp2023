@@ -14,6 +14,15 @@ app.use('/dogs', (req, res, next) => {
   console.log('I love dogs');
   next();
 });
+
+app.use((req, res, next) => {
+  const { password } = req.query;
+  if (password === 'chickennugget') {
+    next();
+  }
+  res.send('sorry you need a password');
+});
+
 // app.use((req, res, next) => {
 //   console.log('This is my first middleware!!');
 //   return next();
@@ -39,10 +48,14 @@ app.get('/dogs', (req, res) => {
   res.send('Woof Woof!');
 });
 
+app.get('/secret', (req, res) => {
+  res.send('MY SECRET IS: Sometimes I wear headphones in public so U dont to talk to anyone');
+});
+
 // This will only run, because it's at the end of the app
 // It will only run if we never sent back anything before.
 app.use((req, res) => {
-  res.status.send('NOT FOUND!');
+  res.status(404).send('NOT FOUND!');
 });
 
 app.listen(3000, () => {
