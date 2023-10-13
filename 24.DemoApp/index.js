@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 
 const Product = require('./models/product');
 const Farm = require('./models/farm');
+const categories = ['fruit', 'vegetable', 'dairy', 'fungai'];
 
 main().catch((err) => {
   console.log('Oh no Mongo connection error!');
@@ -48,9 +49,23 @@ app.post('/farms', async (req, res) => {
   res.redirect('/farms');
 });
 
-// PRODUCT ROUTES
+app.get('/farms/:id/products/new', (req, res) => {
+  const { id } = req.params;
+  res.render('products/new', { categories, id });
+});
 
-const categories = ['fruit', 'vegetable', 'dairy', 'fungai'];
+app.post('/farms/:id/products', async (req, res) => {
+  const { id } = req.params;
+  const farm = await Farm.findById(id);
+  const product = new Product(req.body);
+  farm.products.push(product);
+  product.farm = farm;
+  await farm.save();
+  await product.save();
+  res.send(farm);
+});
+
+// PRODUCT ROUTES
 
 app.get('/products', async (req, res) => {
   const { category } = req.query;
