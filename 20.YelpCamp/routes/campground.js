@@ -46,6 +46,10 @@ router.get(
   catchAsync(async (req, res) => {
     const { id } = req.params;
     const campground = await Campground.findById(id).populate('reviews');
+    if (!campground) {
+      req.flash('error', 'Cannot find that campground');
+      return res.redirect('/campgrounds');
+    }
     // res.render('campgrounds/show', { campground, mgs: req.flash('success') }); not using middleware, we can also do this  =)
     res.render('campgrounds/show', { campground });
   })
@@ -55,6 +59,10 @@ router.get(
   '/:id/edit',
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
+    if (!campground) {
+      req.flash('error', 'Cannot find that campground');
+      return res.redirect('/campgrounds');
+    }
     res.render('campgrounds/edit', { campground });
   })
 );
