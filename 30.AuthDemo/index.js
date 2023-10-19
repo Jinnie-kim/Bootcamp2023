@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 // connect to mongo(mongoose)
 async function main() {
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(session({ secret: 'notagoodsecret' })); // send cookie back automatically
 
 app.get('/', (req, res) => {
   res.send('This is the hompage');
@@ -36,7 +38,8 @@ app.post('/register', async (req, res) => {
     password: hash,
   });
   await user.save();
-  res.redirect('/');
+  req.session.user_id = user._id;
+  res.redirect('/secret');
 });
 
 app.get('/login', (req, res) => {
@@ -49,13 +52,18 @@ app.post('/login', async (req, res) => {
 
   const validPassword = await bcrypt.compare(password, user.password);
   if (validPassword) {
-    res.send('Yay welcome!');
+    // If you do successfully log in, we'll store your user ID in the session
+    req.session.user_id = user._id;
+    res.redirect('/secret');
   } else {
-    res.send('Try again');
+    res.redirect('/login');
   }
 });
 
 app.get('/secret', (req, res) => {
+  if (!req.session.user_id) {
+    res.redirect('/login');
+  }
   res.send("This is secret you cannot see me unless you're logged in");
 });
 
