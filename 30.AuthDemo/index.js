@@ -20,7 +20,15 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(express.urlencoded({ extended: true }));
-app.use(session({ secret: 'notagoodsecret' })); // send cookie back automatically
+app.use(session({ secret: 'notagoodsecret' })); // send cookie back automatically'
+
+const requireLogin = (req, res, next) => {
+  if (!req.session.user_id) {
+    return res.redirect('/login');
+  }
+
+  next();
+};
 
 app.get('/', (req, res) => {
   res.send('This is the hompage');
@@ -66,11 +74,12 @@ app.post('/logout', (req, res) => {
   res.redirect('/login');
 });
 
-app.get('/secret', (req, res) => {
-  if (!req.session.user_id) {
-    return res.redirect('/login');
-  }
+app.get('/secret', requireLogin, (req, res) => {
   res.render('secret');
+});
+
+app.get('/topsecret', requireLogin, (req, res) => {
+  res.send('top secret');
 });
 
 app.listen(3000, () => {
