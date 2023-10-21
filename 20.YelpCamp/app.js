@@ -10,6 +10,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const userRoutes = require('./routes/users');
 const campgroundsRoutes = require('./routes/campground');
 const reviewsRoutes = require('./routes/reivew');
 
@@ -57,6 +58,7 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+// configuration passport
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate));
@@ -64,6 +66,7 @@ passport.use(new LocalStrategy(User.authenticate));
 passport.serializeUser(User.serializeUser);
 passport.deserializeUser(User.deserializeUser);
 
+// set flash middleware
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
@@ -76,6 +79,7 @@ app.get('/fakeuser', async (req, res) => {
   res.send(newUser);
 });
 
+app.use('/', userRoutes);
 app.use('/campgrounds', campgroundsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
 
