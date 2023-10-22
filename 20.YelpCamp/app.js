@@ -61,10 +61,10 @@ app.use(flash());
 // configuration passport
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate));
+passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // set flash middleware
 app.use((req, res, next) => {
